@@ -12,7 +12,7 @@ A complete pasrsed JSON for the latest version of Wiktionary at **March 23, 2020
 If you want to parse another version of Wiktionary, check [Wiktextract](https://github.com/tatuylonen/wiktextract) and `process.py`.
 
 * Extract from Wiktionary dump file `enwiktionary-<date>-pages-articles.xml.bz2` ([download here](https://dumps.wikimedia.org/enwiktionary/)) by [Wiktextract](https://github.com/tatuylonen/wiktextract), you will get a *JSON stream* file like `wikt.words` here.
-* Run the script `python process.py ./wikt.words` to get the glosses of words and dump them into a JSON. Other information of words rather than glosses can be easily obtained by modifying the method `get_gloss` in `process.py`.
+* Run the script `python process.py` to get the glosses of words and dump them into a JSON. Other information of words rather than glosses can be easily obtained by modifying the method `get_gloss` in `process.py`.
 
 Processes above may take hours even days for a complete Wiktionary dump file, depending on your computing power, as the large size of raw data and the *stream format* JSON produced by Wiktextract. I'll appreciate if there is better solution.
 
