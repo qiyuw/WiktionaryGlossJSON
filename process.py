@@ -4,6 +4,10 @@ from tqdm import tqdm
 from datetime import datetime
 
 def stream_read_json(fn):
+    '''
+    Deprecated.
+    In case the dump file is stream JSON
+    '''
     total_size = os.path.getsize(fn)
     start_time = datetime.now()
     import json
@@ -48,9 +52,15 @@ def get_gloss(words):
 if __name__ == '__main__':
     pre_fn = '<relativePath>/'
     json_fn = pre_fn + 'wikt.words'
-    out_fn = pre_fn + 'wikt.dict'
+    out_fn = pre_fn + 'wikt.dict.sample'
     print('loading data...')
-    json_streams = list(stream_read_json(json_fn))
-    word_dict = get_gloss(json_streams)
+    # load word by lines
+    with open(json_fn, 'r') as f:
+        w_li = f.readlines()
+    word_jsons = []
+    for w in w_li:
+        word_jsons.append(json.loads(w[:-1]))
+    # extract glosses
+    word_dict = get_gloss(word_jsons)
     with open(out_fn, 'w') as f:
         f.write(json.dumps(word_dict))
